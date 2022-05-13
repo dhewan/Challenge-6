@@ -12,7 +12,10 @@ module.exports = async (req, res, next) => {
         })
         if (!admin) {
             res.status(404).send({ message: 'user not found' })
-        } else if (!admin.dataValues.level==="member"){
+        } else if (admin.dataValues.type==="superadmin"){
+            req.adminlogin = admin.dataValues
+            next() 
+        }else if (admin.dataValues.type==="admin"){
             req.adminlogin = admin.dataValues
             next() 
         }else{

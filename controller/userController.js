@@ -13,7 +13,7 @@ module.exports = class {
             })
             res.status(200).send({
                 status: 200,
-                message: 'Data Admin Ditambahkan!',
+                message: 'Data Member Ditambahkan!',
                 data: admin 
             })
         } catch (error) {
@@ -47,7 +47,7 @@ module.exports = class {
             if (!admin) {
                res.status(404).send({
                 status: 404,
-                message: 'admin not found!',
+                message: 'user not found!',
                }) 
             }
 
@@ -65,7 +65,7 @@ module.exports = class {
 
             res.status(200).send({
                 status: 200,
-                message: 'admin found!',
+                message: 'Login succses',
                 data: {
                     admin: secureadmin,
                     token: token
