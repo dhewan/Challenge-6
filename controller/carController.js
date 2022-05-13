@@ -39,11 +39,11 @@ module.exports = class {
 
     static async updateCar(req, res, next) {
     try{
-        cars.update({...req.body,UpdatedBy: req.adminlogin.id},{where: {id: req.params.id},returning: true})
+            const neUpdate = await cars.update({...req.body,UpdatedBy: req.adminlogin.id},{where: {id: req.params.id},returning: true})
               res.status(201).send({
                 status: 201,
                 message: 'Data car diupdate!',
-                data: cars.body
+                data: neUpdate
             })
     }
     catch(err){
@@ -52,11 +52,11 @@ module.exports = class {
     }
     static async deleteCar(req, res, next) {
         try{
-            const delCars = cars.update({deletedBy: req.adminlogin.id, available: false},{where: {id: req.params.id},returning: true})
+            const delCars = await cars.update({deletedBy: req.adminlogin.id, available: false},{where: {id: req.params.id},returning: true})
                   res.status(201).send({
                     status: 201,
                     message: 'Data cars dihapus!',
-                    data: delCars.body
+                    data: delCars
                 })
         }
         catch(err){
